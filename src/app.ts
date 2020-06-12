@@ -1,5 +1,5 @@
 import { Bot } from "./Bot";
-import { startGameLoop, addUpdateEvent } from "./Gameloop";
+import { startGameLoop, addUpdateEvent } from "./GameLoop";
 
 const args = require("minimist")(process.argv.slice(2));
 const b = new Bot(args.login, args.host, args.port, args.password);
