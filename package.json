@@ -1,0 +1,29 @@
+{
+  "name": "projectsarica",
+  "version": "0.0.1",
+  "description": "A Minecraft artificial general intelligence bot, designed with the goal of replicating thoughts and emotions.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TheDudeFromCI/ProjectSarica.git"
+  },
+  "keywords": [
+    "ai",
+    "agi",
+    "Minecraft",
+    "bot"
+  ],
+  "author": "TheDudeFromCI",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/TheDudeFromCI/ProjectSarica/issues"
+  },
+  "homepage": "https://github.com/TheDudeFromCI/ProjectSarica#readme",
+  "dependencies": {
+    "eslint": "^7.2.0",
+    "mineflayer": "^2.19.0"
+  }
+}
