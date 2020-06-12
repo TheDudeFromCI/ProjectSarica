@@ -1,13 +1,19 @@
 import mineflayer from "mineflayer";
 import { Entity } from "prismarine-entity";
+import { Vec3 } from "vec3";
+import { setInterval } from "timers";
 
-export class Bot {
+export class Bot
+{
   bot: mineflayer.Bot;
   initialized: boolean;
+  gameloop: NodeJS.Timeout;
 
-  constructor(login: string, host: string, port: number, password?: string) {
+  constructor(login: string, host: string, port: number, password?: string)
+  {
     console.log(`Starting bot '${login}' on ${host}:${port}`);
     this.initialized = false;
+    this.gameloop = setInterval(() => this.update(), 50);
 
     this.bot = mineflayer.createBot({
       host: host,
@@ -20,37 +26,73 @@ export class Bot {
     this.bot.on("chat", (username, message) => this.onChat(username, message));
     this.bot.on("entityHurt", (entity) => this.onEntityHurt(entity));
     this.bot.on("spawn", () => this.onSpawn());
+    this.bot.on("kicked", () => this.onKick());
   }
 
-  onSpawn(): void {
+  onSpawn(): void
+  {
     if (this.initialized) return;
     this.initialized = true;
 
     this.logStats();
   }
 
-  logStats(): void {
+  logout(): void
+  {
+    this.onKick();
+    this.bot.quit();
+  }
+
+  onKick(): void
+  {
+    this.initialized = false;
+  }
+
+  update(): void
+  {
+    if (!this.initialized) return;
+
+    this.lookAtEntity(this.bot.players.TheDudeFromCI.entity);
+  }
+
+  logStats(): void
+  {
     console.log(`Joined server.`);
     console.log(`Username: ${this.bot.username}`);
     console.log(`Game Mode: ${this.bot.game.gameMode}`);
     console.log(`World: ${this.bot.game.dimension}`);
     console.log(`Difficulty: ${this.bot.game.difficulty}`);
+    console.log(`Version: ${this.bot.version}`);
 
     let playerNames = Object.keys(this.bot.players);
     console.log(`Online Players: ${playerNames.length}`);
 
-    for (let playerName of playerNames) {
+    for (let playerName of playerNames)
+    {
       console.log(`  - ${playerName}`);
     }
   }
 
-  onChat(username: string, message: string): void {
+  onChat(username: string, message: string): void
+  {
     if (username === this.bot.username) return;
     this.bot.chat(message);
   }
 
-  onEntityHurt(entity: Entity): void {
+  onEntityHurt(entity: Entity): void
+  {
     if (entity !== this.bot.entity) return;
     this.bot.chat("Ow!");
+  }
+
+  lookAtPosition(position: Vec3): void
+  {
+    this.bot.lookAt(position);
+  }
+
+  lookAtEntity(entity: Entity): void
+  {
+    // @ts-ignore
+    this.bot.lookAt(entity.position.offset(0, entity.height, 0));
   }
 }
