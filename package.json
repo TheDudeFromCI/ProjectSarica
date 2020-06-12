@@ -2,9 +2,11 @@
   "name": "projectsarica",
   "version": "0.0.1",
   "description": "A Minecraft artificial general intelligence bot, designed with the goal of replicating thoughts and emotions.",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "tsc": "tsc",
+    "start": "tsc --outDir build; node build/app.js"
   },
   "repository": {
     "type": "git",
@@ -23,7 +25,11 @@
   },
   "homepage": "https://github.com/TheDudeFromCI/ProjectSarica#readme",
   "dependencies": {
+    "@types/node": "^14.0.13",
     "eslint": "^7.2.0",
-    "mineflayer": "^2.19.0"
+    "mineflayer": "^2.19.0",
+    "minimalist": "^1.0.0",
+    "prismarine-entity": "^1.0.0",
+    "typescript": "^3.9.5"
   }
 }
