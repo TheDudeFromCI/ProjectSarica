@@ -1,19 +1,16 @@
 import mineflayer from "mineflayer";
 import { Entity } from "prismarine-entity";
 import { Vec3 } from "vec3";
-import { setInterval } from "timers";
 
 export class Bot
 {
   bot: mineflayer.Bot;
   initialized: boolean;
-  gameloop: NodeJS.Timeout;
 
   constructor(login: string, host: string, port: number, password?: string)
   {
     console.log(`Starting bot '${login}' on ${host}:${port}`);
     this.initialized = false;
-    this.gameloop = setInterval(() => this.update(), 50);
 
     this.bot = mineflayer.createBot({
       host: host,
@@ -27,6 +24,11 @@ export class Bot
     this.bot.on("entityHurt", (entity) => this.onEntityHurt(entity));
     this.bot.on("spawn", () => this.onSpawn());
     this.bot.on("kicked", () => this.onKick());
+  }
+
+  isReady(): boolean
+  {
+    return this.initialized;
   }
 
   onSpawn(): void
@@ -46,13 +48,6 @@ export class Bot
   onKick(): void
   {
     this.initialized = false;
-  }
-
-  update(): void
-  {
-    if (!this.initialized) return;
-
-    this.lookAtEntity(this.bot.players.TheDudeFromCI.entity);
   }
 
   logStats(): void

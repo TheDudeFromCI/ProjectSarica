@@ -15,7 +15,7 @@ function update(): void
 /**
  * Starts the game loop timer.
  */
-export function start(): void
+export function startGameLoop(): void
 {
     gameLoop = setInterval(() => update(), 50);
 }
@@ -23,7 +23,7 @@ export function start(): void
 /**
  * Stops the game loop and clears all listeners.
  */
-export function stop(): void
+export function stopGameLoop(): void
 {
     clearInterval(gameLoop);
     updateListeners = new Array();
@@ -33,7 +33,7 @@ export function stop(): void
  * Adds a function to this game loop to be run every tick.
  * @param func - The function to be run.
  */
-export function addListener(func: Function): void
+export function addUpdateEvent(func: Function): void
 {
     updateListeners.push(func);
 }
