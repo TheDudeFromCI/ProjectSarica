@@ -79,13 +79,16 @@ export class InterestDatabase
 
         const mcData = require('minecraft-data')(this.bot.version);
         const defaultMove = new Movements(this.bot, mcData);
+        defaultMove.digCost = 1;
+        defaultMove.allow1by1towers = true;
+        defaultMove.maxDropDown = 4;
 
         // @ts-ignore
         this.bot.pathfinder.setMovements(defaultMove);
 
         let distance = 1.5;
-        if (entity.entityType === mcData.entitiesByName['item'].id
-            || entity.entityType === mcData.entitiesByName['arrow'].id)
+        if (entity.entityType === mcData.entitiesByName.item.id
+            || entity.entityType === mcData.entitiesByName.arrow.id)
             distance = 0;
 
         const goal = new goals.GoalFollow(entity, distance);
@@ -103,9 +106,17 @@ export class InterestDatabase
         if (entity)
         {
             // @ts-ignore
-            this.bot.lookAt(entity.position.offset(0, entity.height, 0));
+            let editing = this.bot.pathfinder.isMining() || this.bot.pathfinder.isBuilding();
+            if (!editing)
+            {
+                // @ts-ignore
+                this.bot.lookAt(entity.position.offset(0, entity.height, 0));
+            }
 
             this.updateMove(entity);
         }
+        // @ts-ignore
+        this.bot.lookAt(entity.position.offset(0, entity.height, 0));
+
     }
 }
