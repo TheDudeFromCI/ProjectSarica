@@ -83,8 +83,12 @@ export class InterestDatabase
         // @ts-ignore
         this.bot.pathfinder.setMovements(defaultMove);
 
-        // @ts-ignore
-        const goal = new goals.GoalFollow(entity, 0);
+        let distance = 1.5;
+        if (entity.entityType === mcData.entitiesByName['item'].id
+            || entity.entityType === mcData.entitiesByName['arrow'].id)
+            distance = 0;
+
+        const goal = new goals.GoalFollow(entity, distance);
 
         // @ts-ignore
         this.bot.pathfinder.setGoal(goal, true);
