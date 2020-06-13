@@ -1,11 +1,10 @@
 import mineflayer from "mineflayer";
 import { Entity } from "prismarine-entity";
 import { InterestDatabase } from "./Interest";
-import { startGameLoop, addUpdateEvent } from "./GameLoop";
 
 const args = require("minimist")(process.argv.slice(2));
 
-console.log(`Starting bot '${args.login}' on ${args.host}:${args.port | 25565}`);
+console.log(`Starting bot '${args.login}' on ${args.host}:${args.port || 25565}`);
 const bot = mineflayer.createBot({
     username: args.login,
     password: args.password,
@@ -13,9 +12,11 @@ const bot = mineflayer.createBot({
     port: args.port,
 });
 
-const interestDatabase: InterestDatabase = new InterestDatabase(bot);
+new InterestDatabase(bot);
 let initialized: boolean = false;
 let ready: boolean = false;
+
+bot.loadPlugin(require('mineflayer-pathfinder').pathfinder);
 
 bot.on("chat", (username, message) => onChat(username, message));
 bot.on("entityHurt", (entity) => onEntityHurt(entity));
@@ -102,14 +103,3 @@ function onEntityHurt(entity: Entity): void
     if (entity !== bot.entity) return;
     bot.chat("Ow!");
 }
-
-addUpdateEvent(() =>
-{
-    if (!isReady()) return;
-
-    let interestHolder = interestDatabase.getMostInteresting();
-    if (interestHolder)
-        bot.lookAt(interestHolder.getLookPosition());
-});
-
-startGameLoop();
