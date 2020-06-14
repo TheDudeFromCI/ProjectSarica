@@ -19,7 +19,6 @@ export class InterestDatabase
     {
         this.bot = bot;
 
-        // @ts-ignore
         this.bot.on("physicTick", () => this.onTick());
     }
 
