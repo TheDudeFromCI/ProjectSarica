@@ -19,6 +19,7 @@ export class InterestDatabase
     {
         this.bot = bot;
 
+        // @ts-ignore // TODO Remove this when mineflayer is updated
         this.bot.on("physicTick", () => this.onTick());
     }
 
@@ -114,8 +115,5 @@ export class InterestDatabase
 
             this.updateMove(entity);
         }
-        // @ts-ignore
-        this.bot.lookAt(entity.position.offset(0, entity.height, 0));
-
     }
 }
