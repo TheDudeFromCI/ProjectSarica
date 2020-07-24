@@ -34,7 +34,7 @@
     "typed-emitter": "^1.2.0"
   },
   "devDependencies": {
-    "@types/node": "14.0.25",
+    "@types/node": "14.0.26",
     "typescript": "3.9.7"
   }
 }
