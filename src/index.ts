@@ -1,11 +1,12 @@
 import * as mineflayer from 'mineflayer';
-import { default as armorManagerPlugin} from 'mineflayer-armor-manager';
-import { pathfinder as pathfinderPlugin} from 'mineflayer-pathfinder';
+import { default as armorManagerPlugin } from 'mineflayer-armor-manager';
+import { pathfinder as pathfinderPlugin } from 'mineflayer-pathfinder';
 import { plugin as pvpPlugin } from 'mineflayer-pvp';
 import { plugin as collectBlockPlugin } from 'mineflayer-collectblock';
 import { plugin as cmdPlugin } from 'mineflayer-cmd';
 import { plugin as toolPlugin } from 'mineflayer-tool';
 import { loadPrismarineViewer } from './PrismarineViewer';
+import { loadStateMachine } from './StateMachine';
 
 if (process.argv.length < 4 || process.argv.length > 6)
 {
@@ -28,3 +29,4 @@ bot.loadPlugin(cmdPlugin);
 bot.loadPlugin(toolPlugin);
 
 loadPrismarineViewer(bot);
+loadStateMachine(bot);

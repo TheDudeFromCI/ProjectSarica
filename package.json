@@ -32,6 +32,7 @@
     "mineflayer-pvp": "^1.0.2",
     "mineflayer-statemachine": "^1.5.1",
     "mineflayer-tool": "^1.1.0",
+    "mineflayer-utils": "^0.1.4",
     "prismarine-viewer": "^1.6.0"
   },
   "devDependencies": {
