@@ -1,0 +1,6 @@
+{
+    "viewer": {
+        "port": 3000,
+        "firstPerson": false
+    }
+}
