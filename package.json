@@ -2,11 +2,10 @@
   "name": "projectsarica",
   "version": "0.0.1",
   "description": "A Minecraft artificial general intelligence bot, designed with the goal of replicating thoughts and emotions.",
-  "main": "app.js",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "tsc": "tsc",
-    "start": "tsc --outDir build && node build/app.js"
+    "prepare": "tsc"
   },
   "repository": {
     "type": "git",
@@ -25,13 +24,14 @@
   },
   "homepage": "https://github.com/TheDudeFromCI/ProjectSarica#readme",
   "dependencies": {
-    "eslint": "^7.2.0",
-    "mineflayer": "^2.22.1",
-    "mineflayer-pathfinder": "^1.0.6",
-    "mineflayer-statemachine": "^1.5.0",
-    "node": "^14.5.0",
-    "prismarine-entity": "^1.0.0",
-    "typed-emitter": "^1.2.0"
+    "mineflayer": "^2.32.0",
+    "mineflayer-armor-manager": "^1.3.0",
+    "mineflayer-cmd": "^1.0.1",
+    "mineflayer-collectblock": "^1.1.0",
+    "mineflayer-pathfinder": "^1.0.11",
+    "mineflayer-pvp": "^1.0.2",
+    "mineflayer-statemachine": "^1.5.1",
+    "mineflayer-tool": "^1.1.0"
   },
   "devDependencies": {
     "@types/node": "14.14.5",
