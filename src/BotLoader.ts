@@ -8,6 +8,9 @@ import { loadPrismarineViewer } from './PrismarineViewer';
 import { loadStateMachine } from './StateMachine';
 import { createBot, Bot } from 'mineflayer';
 
+// @ts-expect-error ; dashboard does not have a typescript header yet
+import { default as dashboardPlugin } from 'mineflayer-dashboard';
+
 export function initializeNewBot(host: string, port: number, username: string, password?: string): Bot
 {
     const bot = createBot({
@@ -23,6 +26,16 @@ export function initializeNewBot(host: string, port: number, username: string, p
     bot.loadPlugin(pathfinderPlugin);
     bot.loadPlugin(cmdPlugin);
     bot.loadPlugin(toolPlugin);
+    bot.loadPlugin(dashboardPlugin);
+
+    // Fix dashboard logging
+    bot.once('spawn', () => {
+        // @ts-expect-error
+        global.console.log = bot.dashboard.log
+
+        // @ts-expect-error
+        global.console.error = bot.dashboard.log
+    })
     
     loadPrismarineViewer(bot);
     loadStateMachine(bot);

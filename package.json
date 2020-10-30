@@ -29,6 +29,7 @@
     "mineflayer-armor-manager": "^1.3.0",
     "mineflayer-cmd": "^1.0.1",
     "mineflayer-collectblock": "^1.1.0",
+    "mineflayer-dashboard": "^1.0.0",
     "mineflayer-pathfinder": "^1.0.11",
     "mineflayer-pvp": "^1.0.2",
     "mineflayer-statemachine": "^1.5.1",
