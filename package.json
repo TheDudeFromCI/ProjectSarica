@@ -5,6 +5,7 @@
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "scripts": {
+    "run": "tsc && node lib/index.js",
     "prepare": "tsc"
   },
   "repository": {
